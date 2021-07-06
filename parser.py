@@ -4,7 +4,7 @@ def fix_domain(domain: str) -> str:
     sub_domain = [sd for sd in domain.split(';')]
 
     # add iso-thes:microThesaurusOf to first line
-    sub_domain[0] = sub_domain[0] + ', iso-thes:microThesaurusOf'
+    # sub_domain[0] = sub_domain[0] + ', iso-thes:microThesaurusOf'
 
     # fix iso-thes:subGroup URI references
     sub_domain[3] = sub_domain[3].replace('/mt','/?idg=mt').replace('>', '&idt=th1>')
@@ -13,7 +13,7 @@ def fix_domain(domain: str) -> str:
     sub_domain.insert(-3, sub_domain[3].replace('iso-thes:subGroup', 'skos:member'))
 
     # delete iso-thes:microThesaurusOf from inside domain
-    del sub_domain[2]
+    # del sub_domain[2]
 
     return ';'.join(sub_domain)
 
