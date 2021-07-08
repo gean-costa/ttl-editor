@@ -52,13 +52,14 @@ def fix_turtle(element: str) -> str:
         r'^<http:\/\/vocabularies.unesco.org\/thesaurus\/\?idg=domain')
     group = re.compile(
         r'^<http:\/\/vocabularies.unesco.org\/thesaurus\/\?idg=mt')
+    isothes_supergroup = re.compile('(iso-thes:superGroup)')
     added = re.compile(
         r'^<http:\/\/vocabularies.unesco.org\/thesaurus\/\?idg=G')
 
     if collection.search(element):
         if domain.search(element):
             element = fix_domain(element)
-        elif group.search(element):
+        elif group.search(element) and isothes_supergroup.search(element):
             element = fix_group(element)
         elif added.search(element):
             element = fix_added(element)
